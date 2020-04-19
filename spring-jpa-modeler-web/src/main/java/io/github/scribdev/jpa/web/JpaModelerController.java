@@ -27,10 +27,11 @@ public class JpaModelerController {
 	private JpaModelMappingContext jpaModelMappingContext;
 
 	@RequestMapping(value = DEFAULT_URL, method = RequestMethod.GET, produces = { APPLICATION_JSON_VALUE })
-	public ResponseEntity<JsonNode> getJpaModel(HttpServletRequest servletRequest) {
+	public ResponseEntity<String> getJpaModel(HttpServletRequest servletRequest) {
 
 		JsonNode model = jpaModelMappingContext.getModel();
-		return new ResponseEntity<JsonNode>(model, HttpStatus.OK);
+
+		return new ResponseEntity<>(model.toPrettyString(), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = SQL_QUERY_URL, method = RequestMethod.GET, produces = { APPLICATION_JSON_VALUE })
